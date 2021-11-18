@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "3cc8e00f-ae6c-454b-becf-a28669483333",
+		"name": "blogPessoal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST usuarios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Kathleen Caroline\",\n    \"usuario\":\"almostcarol\",\n    \"senha\": \"carolzinha123\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/cadastrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"cadastrar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST logar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\":\"almostcarol\",\n    \"senha\": \"carolzinha123\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/logar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"logar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get postagens",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario\":\"almostcarol\",\n    \"senha\": \"carolzinha123\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/usuarios/logar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"usuarios",
+						"logar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
