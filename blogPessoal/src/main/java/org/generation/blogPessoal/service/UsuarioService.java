@@ -13,6 +13,30 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioService {
+	
+private String criptografarSenha(String senha) {
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+		return encoder.encode(senha);
+
+	}
+
+private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
+
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+	return encoder.matches(senhaDigitada, senhaBanco);
+
+}
+
+private String gerarBasicToken(String email, String password) {
+
+	String tokenBase = email + ":" + password;
+	byte[] tokenBase64 = Base64.encodeBase64(tokenBase.getBytes(Charset.forName("US-ASCII")));
+	return "Basic " + new String(tokenBase64);
+
+}
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
@@ -56,11 +80,12 @@ public class UsuarioService {
 			if (compararSenhas(usuarioLogin.get().getSenha(), usuario.get().getSenha())) {
 
 				String token = gerarBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha());
-
 				usuarioLogin.get().setId(usuario.get().getId());
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setSenha(usuario.get().getSenha());
 				usuarioLogin.get().setToken(token);
+				usuarioLogin.get().setFoto(usuario.get().getFoto());
+				usuarioLogin.get().setTipo(usuario.get().getTipo());
 
 				return usuarioLogin;
 
@@ -71,29 +96,9 @@ public class UsuarioService {
 
 	}
 
-	private String criptografarSenha(String senha) {
-		
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 
-		return encoder.encode(senha);
-
-	}
-
-	private boolean compararSenhas(String senhaDigitada, String senhaBanco) {
-
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-		return encoder.matches(senhaDigitada, senhaBanco);
-
-	}
-
-	private String gerarBasicToken(String email, String password) {
-
-		String tokenBase = email + ":" + password;
-		byte[] tokenBase64 = Base64.encodeBase64(tokenBase.getBytes(Charset.forName("US-ASCII")));
-		return "Basic " + new String(tokenBase64);
-
-	}
+	
 
 }
 
